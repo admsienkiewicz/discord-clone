@@ -1,0 +1,79 @@
+@import '../assets/colorVariables';
+
+.ServerList {
+    flex: 0.75;
+    background-color: $ServerList-background-color;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+    position: relative;
+
+    &__appIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 5px;
+        border-bottom: 2px solid $ServerList-icon-color-dark;
+        margin-bottom: 5px;
+
+        .appIcon {
+            padding: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: $ServerList-icon-color-dark;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $light-blue;
+            }
+        }
+    }
+
+    &__addIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 5px;
+        border-top: 2px solid $ServerList-icon-color-dark;
+        margin-top: 5px;
+
+        &:hover {
+            .addMessage {
+                display: block;
+            }
+        }
+
+        .addIcon {
+            padding: 5px;
+            width: 50px;
+            height: 50px;
+            color: $light-green;
+            border-radius: 50%;
+            background-color: $ServerList-icon-color-dark;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $light-green;
+                color: $white;
+                border-radius: 20px;
+            }
+        }
+
+        .addMessage {
+            position: absolute;
+            z-index: 10;
+            background-color: $dark-color;
+            color: $white;
+            left: 80%;
+            padding: 5px 10px;
+            max-height: 40px;
+            width: max-content;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 1px 4px 2px $shadow-color;
+        }
+    }
+}

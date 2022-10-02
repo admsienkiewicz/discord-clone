@@ -1,0 +1,17 @@
+@import '../assets/colorVariables';
+
+.Channel {
+    flex: 10;
+    background-color: $ChannelChat-background-color;
+    position: relative;
+
+    &__channelInfo {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid $ServerInfo-border-color;
+        padding: 0 30px;
+        font-size: 20px;
+        color: $white;
+    }
+}

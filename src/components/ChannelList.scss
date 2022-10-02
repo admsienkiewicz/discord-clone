@@ -1,0 +1,31 @@
+@import '../assets/colorVariables';
+.ChannelList {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 5px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        color: $white;
+        gap: 10px;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+
+    &__content {
+        color: $light-gray;
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $ChannelList-selected-color;
+            color: $white;
+        }
+    }
+}
