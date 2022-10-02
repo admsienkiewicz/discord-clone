@@ -4,6 +4,8 @@
     padding: 20px;
     flex-direction: column;
     gap: 5px;
+    height: calc(50% - 115px);
+    overflow: scroll;
 
     &__header {
         display: flex;
@@ -23,7 +25,8 @@
         cursor: pointer;
         border-radius: 5px;
 
-        &:hover {
+        &:hover,
+        &.selected {
             background-color: $ChannelList-selected-color;
             color: $white;
         }

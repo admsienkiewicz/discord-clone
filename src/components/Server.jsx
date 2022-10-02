@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ChannelList from './ChannelList'
 import UserInfo from './UserInfo'
 import './Server.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
+import { SidebarContext } from '../context/SidebarContext'
 
 const Server = () => {
     const [openOptions, setOpenOptions] = useState(false)
+    const { openSideBar } = useContext(SidebarContext)
     return (
-        <div className="Server">
+        <div className={`Server ${!openSideBar && 'hidden'} `}>
             <div className="Server__info">
                 <span className="Server__name">Server</span>
                 {!openOptions && (

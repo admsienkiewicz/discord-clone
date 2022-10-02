@@ -1,14 +1,26 @@
 @import '../assets/colorVariables';
+@import '../assets/mediaQueries';
 
 .ServerList {
-    flex: 0.75;
+    flex: 1;
     background-color: $ServerList-background-color;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: visible;
     position: relative;
+    max-width: 80px;
+    overflow-x: visible;
+
+    @include mobile-view {
+        overflow: scroll;
+    }
+
+    &.hidden {
+        @include mobile-view {
+            display: none;
+        }
+    }
 
     &__appIcon {
         display: flex;
@@ -32,6 +44,15 @@
         }
     }
 
+    &__icons {
+        max-height: calc(100% - 140px);
+        max-width: 80px;
+
+        @include mobile-view {
+            overflow-y: scroll;
+        }
+    }
+
     &__addIcon {
         display: flex;
         align-items: center;
@@ -42,7 +63,7 @@
 
         &:hover {
             .addMessage {
-                display: block;
+                visibility: visible;
             }
         }
 
@@ -67,13 +88,17 @@
             z-index: 10;
             background-color: $dark-color;
             color: $white;
-            left: 80%;
+            left: 100%;
             padding: 5px 10px;
             max-height: 40px;
             width: max-content;
+            visibility: hidden;
             border-radius: 5px;
-            display: none;
             box-shadow: 1px 4px 2px $shadow-color;
+
+            @include mobile-view {
+                display: none;
+            }
         }
     }
 }

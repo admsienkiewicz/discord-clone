@@ -1,9 +1,15 @@
 @import '../assets/colorVariables';
-
+@import '../assets/mediaQueries';
 .Channel {
     flex: 10;
     background-color: $ChannelChat-background-color;
     position: relative;
+
+    &.hidden {
+        @include mobile-view {
+            display: none;
+        }
+    }
 
     &__channelInfo {
         display: flex;
@@ -13,5 +19,13 @@
         padding: 0 30px;
         font-size: 20px;
         color: $white;
+        &--openSide {
+            margin-right: 20px;
+            display: none;
+            cursor: pointer;
+            @include mobile-view {
+                display: inline;
+            }
+        }
     }
 }

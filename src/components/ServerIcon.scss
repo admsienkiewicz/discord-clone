@@ -7,6 +7,8 @@
     aspect-ratio: 1/1;
     padding: 5px;
     margin: 5px 0;
+    width: 90%;
+    aspect-ratio: 1/1;
     pointer-events: none;
     position: relative;
 
@@ -25,20 +27,20 @@
             border-left: 2px solid $light-gray;
         }
         .ServerIcon__name {
-            display: inline;
+            display: block;
         }
     }
 
     &__selection {
         height: 40%;
-        width: 140%;
+        width: 100%;
         position: absolute;
     }
 
     &__img {
         object-fit: cover;
-        height: 60px;
-        width: 60px;
+        height: 90%;
+        aspect-ratio: 1/1;
         border-radius: 50%;
         cursor: pointer;
         pointer-events: all;
