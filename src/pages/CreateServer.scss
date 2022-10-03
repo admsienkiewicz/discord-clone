@@ -1,0 +1,34 @@
+@import './Register.scss';
+
+.CreateServer {
+    @extend .Register;
+
+    .formContainer {
+        &__selectImage {
+            display: flex;
+            flex-direction: column;
+            &--icon {
+                font-size: 110px;
+                padding: 10px;
+                border-radius: 50%;
+                background-color: $light-blue;
+                color: $white;
+            }
+        }
+        & .serverDescription {
+            min-width: 250px;
+        }
+        &__buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & .create {
+                background-color: $light-green;
+            }
+            & .cancel {
+                background-color: $light-red;
+            }
+        }
+    }
+}

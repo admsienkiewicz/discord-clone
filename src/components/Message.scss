@@ -46,7 +46,7 @@
             color: $light-blue;
             font-size: 16px;
             @include mobile-view {
-                font-size: 14px;
+                font-size: 12px;
             }
         }
         &--date {
@@ -55,7 +55,7 @@
             margin-top: 4px;
             @include mobile-view {
                 font-size: 10px;
-                margin-top: 2px;
+                margin-top: 1px;
             }
         }
     }

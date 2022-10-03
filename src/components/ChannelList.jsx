@@ -3,6 +3,7 @@ import './ChannelList.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
 import { HiHashtag } from 'react-icons/hi'
+import { BsPlus } from 'react-icons/bs'
 import { SidebarContext } from '../context/SidebarContext'
 
 const ChannelList = () => {
@@ -20,29 +21,9 @@ const ChannelList = () => {
                         <HiHashtag />
                         <span className="channel__name">Main Channel</span>
                     </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
-                    </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
-                    </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
-                    </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
-                    </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
-                    </div>
-                    <div className="ChannelList__content">
-                        <HiHashtag />
-                        <span className="channel__name">Main Channel</span>
+                    <div className="ChannelList__addChannel">
+                        <BsPlus className="ChannelList__addChannel--icon" />
+                        <input type="text" className="ChannelList__addChannel--input" placeholder="Add channel" />
                     </div>
                 </ul>
             )}

@@ -10,6 +10,7 @@ const UserInfo = () => {
                 className="UserInfo__avatar"
             />
             <span className="UserInfo__username">Robertoo</span>
+            <button className="UserInfo__logoutBtn">Log out</button>
         </div>
     )
 }

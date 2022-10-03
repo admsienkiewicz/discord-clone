@@ -8,7 +8,7 @@
 
 .App {
     width: 100vw;
-    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;

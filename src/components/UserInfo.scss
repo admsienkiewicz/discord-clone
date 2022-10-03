@@ -20,4 +20,13 @@
     &__username {
         color: $white;
     }
+    &__logoutBtn {
+        margin-left: 5%;
+        border: none;
+        background-color: $light-blue;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: $white;
+        font-weight: bold;
+    }
 }
