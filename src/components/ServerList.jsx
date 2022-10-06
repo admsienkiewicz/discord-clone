@@ -22,8 +22,9 @@ const ServerList = () => {
             querySnapshot.forEach((doc) => {
                 serversArray.push(doc.data())
             })
-            setCurrServer(serversArray[0])
-            setServers(serversArray)
+            const sorted = serversArray.sort((a, b) => a.creationDate - b.creationDate)
+            setCurrServer(sorted[0])
+            setServers(sorted)
         })
         return () => {
             unsub()

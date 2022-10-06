@@ -7,7 +7,7 @@ import { UserContext } from '../context/UserContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { uuidv4 } from '@firebase/util'
 import { db, storage } from '../firebase'
-import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 
 const CreateServer = () => {
     const [error, setError] = useState('')
@@ -37,6 +37,7 @@ const CreateServer = () => {
                 serverId,
                 adminId,
                 adminName: currUser.displayName,
+                creationDate: new Date(),
             })
             //create server-channel conection doc in firebase db
             await setDoc(doc(db, 'serverChannels', serverId), {})
@@ -45,7 +46,7 @@ const CreateServer = () => {
                     channelId: generalChannelId,
                     channelName: 'General',
                     serverId,
-                    creationDate: serverTimestamp(),
+                    creationDate: new Date(),
                 },
             })
             //create generalChannel document in firebase database
