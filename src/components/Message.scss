@@ -5,6 +5,7 @@
     flex-direction: row;
     gap: 10px;
     margin: 5px 0;
+    width: 750px;
     &__avatar {
         &--img {
             width: 70px;
@@ -19,14 +20,14 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
-        max-width: 70%;
+        max-width: 80%;
 
         &--text {
             padding: 2px 0;
             color: $white;
             font-size: 18px;
             font-weight: 300;
-            width: max-content;
+            overflow-wrap: break-word;
 
             @include mobile-view {
                 font-size: 16px;

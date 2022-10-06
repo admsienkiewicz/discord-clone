@@ -1,12 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import './Message.scss'
+import ReactLoading from 'react-loading'
 
 const Message = ({ msgProps }) => {
     const { senderImg, senderName, sendDate, senderId, contentText, contentImg } = msgProps
     const { currUser } = useContext(UserContext)
+    const [loading, setLoading] = useState(true)
+
+    const ref = useRef()
+
+    useEffect(() => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [msgProps, loading])
+
     return (
-        <div className={`Message`}>
+        <div className={`Message`} ref={ref}>
             <div className="Message__avatar">
                 <img src={senderImg} className="Message__avatar--img" />
             </div>
@@ -15,8 +24,16 @@ const Message = ({ msgProps }) => {
                     <span className="Message__info--username">{senderName}</span>
                     <p className="Message__info--date">{sendDate}</p>
                 </div>
-                {contentImg && <img src={contentImg} className="Message__content--img" />}
                 <span className="Message__content--text">{contentText}</span>
+                {contentImg && loading && <ReactLoading type={'spin'} />}
+                {contentImg && (
+                    <img
+                        src={contentImg}
+                        className="Message__content--img"
+                        style={loading ? { display: 'none' } : {}}
+                        onLoad={() => setLoading(false)}
+                    />
+                )}
             </div>
         </div>
     )
