@@ -1,5 +1,10 @@
+@import '../assets/colorVariables';
 .Main {
     display: flex;
-    height: 100vh;
-    flex: 1;
+    height: 90vh;
+    position: relative;
+    width: 80vw;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: $light-blue;
 }

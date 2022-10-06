@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import './ServerIcon.scss'
+import ReactLoading from 'react-loading'
+import { ServerContext } from '../context/ServerContext'
 
-const ServerIcon = ({ serverName }) => {
+const ServerIcon = ({ serverImg, serverName }) => {
+    const [loading, setLoading] = useState(true)
+    const { currServer } = useContext(ServerContext)
     return (
-        <div className="ServerIcon">
+        <div className={`ServerIcon ${currServer.name === serverName && 'selected'}`}>
+            {loading && <ReactLoading type={'bubbles'} />}
             <div className="ServerIcon__selection"></div>
             <img
-                src="https://scontent-waw1-1.xx.fbcdn.net/v/t1.6435-9/104598313_3043668482348090_7809686983493534073_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1Fskfq0vXaIAX9_tYTH&_nc_ht=scontent-waw1-1.xx&oh=00_AT8uzucF-fyHIDEsgYayiZFmtkvDZQiua3Pcn8bMQr2HUg&oe=635F990E"
-                alt=""
+                src={serverImg}
                 className="ServerIcon__img"
+                style={loading ? { display: 'none' } : {}}
+                onLoad={() => setLoading(false)}
             />
-            <span className="ServerIcon__name">Server namea</span>
+            <span className="ServerIcon__name">{serverName}</span>
         </div>
     )
 }

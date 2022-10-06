@@ -1,8 +1,8 @@
 .ChannelMessages {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 100px);
-    padding: 20px;
+    height: calc(100% - 100px);
+    padding: 30px;
     gap: 10px;
     overflow: scroll;
 }

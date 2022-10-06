@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import './assets/_colorVariables.scss';
 
 * {
     box-sizing: border-box;
@@ -8,9 +9,11 @@
 
 .App {
     width: 100vw;
+    height: 100vh;
     height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    background-color: $light-blue;
 }

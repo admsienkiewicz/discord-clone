@@ -1,27 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 import './Message.scss'
 
-const Message = () => {
+const Message = ({ msgProps }) => {
+    const { senderImg, senderName, sendDate, senderId, contentText, contentImg } = msgProps
+    const { currUser } = useContext(UserContext)
     return (
-        <div className="Message">
+        <div className={`Message`}>
             <div className="Message__avatar">
-                <img
-                    src="https://pbs.twimg.com/media/FeEw7IIXgAI0TqR?format=jpg&name=small"
-                    alt=""
-                    className="Message__avatar--img"
-                />
+                <img src={senderImg} className="Message__avatar--img" />
             </div>
             <div className="Message__content">
                 <div className="Message__info">
-                    <span className="Message__info--username">Lewis Hemiltonn</span>
-                    <p className="Message__info--date">21-12-2022</p>
+                    <span className="Message__info--username">{senderName}</span>
+                    <p className="Message__info--date">{sendDate}</p>
                 </div>
-                <img
-                    src="https://pbs.twimg.com/media/FeEw7IIXgAI0TqR?format=jpg&name=small"
-                    alt=""
-                    className="Message__content--img"
-                />
-                <span className="Message__content--text">Elo roberto</span>
+                {contentImg && <img src={contentImg} className="Message__content--img" />}
+                <span className="Message__content--text">{contentText}</span>
             </div>
         </div>
     )
