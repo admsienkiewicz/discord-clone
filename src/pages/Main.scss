@@ -17,12 +17,12 @@
         border-radius: 10px;
     }
     @include mobile-view {
-        height: 100vh;
+        height: calc(100vh - calc(100vh - 100%));
         width: 100vw;
         border-radius: 0;
     }
     @include tablet-portrait-view {
-        height: 100vh;
+        height: calc(100vh - calc(100vh - 100%));
         width: 100vw;
         border-radius: 0;
     }
