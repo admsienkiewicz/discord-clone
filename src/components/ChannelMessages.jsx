@@ -22,8 +22,8 @@ const ChannelMessages = () => {
     }, [currChannel.channelId])
     return (
         <div className="ChannelMessages">
-            {messages?.map((msg) => {
-                return <Message msgProps={msg} />
+            {messages?.map((msg, index) => {
+                return <Message key={index} msgProps={msg} />
             })}
         </div>
     )

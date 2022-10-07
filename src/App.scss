@@ -7,10 +7,31 @@
     margin: 0;
 }
 
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $light-gray;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: $dark-color;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $light-gray;
+    border-radius: 20px;
+    border: 2px solid $dark-color;
+}
+
 .App {
     width: 100vw;
     height: 100vh;
-    height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -3,3 +3,23 @@
         @content;
     }
 }
+@mixin tablet-portrait-view {
+    @media (min-width: 600px) and (max-width: 900px) {
+        @content;
+    }
+}
+@mixin tablet-landscape-view {
+    @media (min-width: 900px) and (max-width: 1400px) {
+        @content;
+    }
+}
+@mixin desktop-view {
+    @media (min-width: 1400px) and (max-width: 1800px) {
+        @content;
+    }
+}
+@mixin big-desktop-view {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}

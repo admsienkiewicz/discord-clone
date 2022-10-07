@@ -14,10 +14,6 @@ const Message = ({ msgProps }) => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
     }, [msgProps])
 
-    useEffect(() => {
-        ref.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [loading])
-
     return (
         <div className={`Message`} ref={ref}>
             <div className="Message__avatar">

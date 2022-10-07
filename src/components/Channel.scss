@@ -5,8 +5,15 @@
     background-color: $ChannelChat-background-color;
     position: relative;
 
+    @include tablet-landscape-view {
+        width: 0;
+    }
+
     &.hidden {
         @include mobile-view {
+            display: none;
+        }
+        @include tablet-portrait-view {
             display: none;
         }
     }
@@ -24,6 +31,9 @@
             display: none;
             cursor: pointer;
             @include mobile-view {
+                display: inline;
+            }
+            @include tablet-portrait-view {
                 display: inline;
             }
         }

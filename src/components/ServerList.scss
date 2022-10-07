@@ -20,6 +20,9 @@
         @include mobile-view {
             display: none;
         }
+        @include tablet-portrait-view {
+            display: none;
+        }
     }
 
     &__appIcon {

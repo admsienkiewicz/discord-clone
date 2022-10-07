@@ -1,8 +1,20 @@
+@import '../assets/mediaQueries';
 .ChannelMessages {
     display: flex;
     flex-direction: column;
     height: calc(100% - 100px);
     padding: 30px;
     gap: 10px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    @include mobile-view {
+        width: 100vw;
+    }
+    @include tablet-portrait-view {
+        width: 100vw;
+    }
+    @include tablet-landscape-view {
+        flex: 20;
+    }
 }

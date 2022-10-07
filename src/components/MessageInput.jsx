@@ -15,6 +15,8 @@ const MessageInput = () => {
     const [img, setImg] = useState(null)
 
     const sendMessage = async () => {
+        setImg(null)
+        setText('')
         if (img) {
             const storageRef = ref(storage, uuidv4())
             const upladTask = await uploadBytesResumable(storageRef, img)
@@ -42,12 +44,14 @@ const MessageInput = () => {
                 }),
             })
         }
-        setImg(null)
-        setText('')
+    }
+
+    const handleEnter = async (e) => {
+        e.code === 'Enter' && (await sendMessage())
     }
 
     return (
-        <div className="MessageInput">
+        <div className="MessageInput" onKeyDown={handleEnter}>
             <input
                 type="file"
                 style={{ display: 'none' }}

@@ -11,6 +11,9 @@
         @include mobile-view {
             display: none;
         }
+        @include tablet-portrait-view {
+            display: none;
+        }
     }
 
     &__info {
@@ -28,20 +31,15 @@
     &__details {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
+        gap: 10px;
         align-items: center;
-        gap: 20px;
         padding: 20px;
+        height: 30%;
         &--logo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-
-            @include mobile-view {
-                width: 100px;
-                height: 100px;
-            }
+            height: 100%;
+            // border-radius: 50%;
+            // object-fit: cover;
         }
         &--description {
             text-align: justify;
@@ -116,6 +114,20 @@
                     }
                 }
             }
+        }
+    }
+    & .wrapper--server {
+        height: 70%;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        border-radius: 50%;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include mobile-view {
+            width: 100px;
+            height: 100px;
         }
     }
 }

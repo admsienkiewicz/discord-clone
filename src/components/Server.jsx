@@ -54,7 +54,9 @@ const Server = () => {
                 )}
             </div>
             <div className="Server__details">
-                <img src={currServer.logo} className="Server__details--logo" />
+                <div className="wrapper--server">
+                    <img src={currServer.logo} className="Server__details--logo" />
+                </div>
                 <span className="Server__details--description">{currServer.description}</span>
                 <span className="Server__details--admin">
                     <b>Server Admin:</b> {currServer.adminName}

@@ -71,7 +71,6 @@ const ChannelList = () => {
         }
     }, [currServer.serverId])
 
-    useEffect(() => console.log('CurrentChannel:', currChannel), [currChannel])
     return (
         <div className="ChannelList" onKeyDown={handleEnter}>
             <div className="ChannelList__header" onClick={() => setToggleList((state) => !state)}>
