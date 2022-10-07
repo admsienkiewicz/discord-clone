@@ -2,7 +2,7 @@
 @import './assets/_colorVariables.scss';
 
 html {
-    height: -webkit-fill-available;
+    height: calc(100vh - calc(100vh - 100%));
 }
 body {
     display: flex;
@@ -10,6 +10,7 @@ body {
     height: calc(100vh - calc(100vh - 100%));
     justify-content: center;
     align-items: center;
+    border: solid green 1px;
 }
 * {
     box-sizing: border-box;

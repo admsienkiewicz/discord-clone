@@ -12,7 +12,7 @@ const Message = ({ msgProps }) => {
 
     useEffect(() => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [msgProps])
+    }, [])
 
     return (
         <div className={`Message`} ref={ref}>
