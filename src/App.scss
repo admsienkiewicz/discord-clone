@@ -7,8 +7,7 @@ html {
 body {
     display: flex;
     width: 100vw;
-    height: 100vh;
-    height: -webkit-fill-available;
+    height: calc(100vh - calc(100vh - 100%));
     justify-content: center;
     align-items: center;
 }
@@ -43,7 +42,6 @@ body {
 .App {
     width: 100vw;
     height: 100vh;
-    height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;
