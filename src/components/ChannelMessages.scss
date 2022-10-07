@@ -5,8 +5,7 @@
     height: calc(100% - 100px);
     padding: 30px;
     gap: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: auto;
 
     @include mobile-view {
         width: 100%;
