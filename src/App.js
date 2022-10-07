@@ -17,24 +17,22 @@ function App() {
         return <Navigate to="/login" />
     }
     return (
-        <Div100vh>
-            <div className="App">
-                <BrowserRouter>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <RedirectToLogin>
-                                    <Main />
-                                </RedirectToLogin>
-                            }
-                        />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/create-server" element={<CreateServer />} />
-                    </Routes>
-                </BrowserRouter>
-            </div>
+        <Div100vh className="App">
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <RedirectToLogin>
+                                <Main />
+                            </RedirectToLogin>
+                        }
+                    />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/create-server" element={<CreateServer />} />
+                </Routes>
+            </BrowserRouter>
         </Div100vh>
     )
 }
