@@ -18,16 +18,19 @@
     }
     @include mobile-view {
         height: 100vh;
+        height: -webkit-fill-available;
         width: 100vw;
         border-radius: 0;
     }
     @include tablet-portrait-view {
         height: 100vh;
+        height: -webkit-fill-available;
         width: 100vw;
         border-radius: 0;
     }
     @include tablet-landscape-view {
         height: 100vh;
+        height: -webkit-fill-available;
         width: 100vw;
         border-radius: 0;
     }
