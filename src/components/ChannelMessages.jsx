@@ -19,6 +19,7 @@ const ChannelMessages = () => {
                 unsub()
             }
         }
+
         //prevent from running when currChannel is undefined
         currChannel.channelId && getMessages()
     }, [currChannel.channelId])

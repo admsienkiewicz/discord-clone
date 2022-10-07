@@ -82,14 +82,4 @@
             }
         }
     }
-
-    &.userMessage {
-        flex-direction: row-reverse;
-    }
-    &.userMessage &__content {
-        align-items: flex-end;
-    }
-    &.userMessage &__info {
-        flex-direction: row-reverse;
-    }
 }

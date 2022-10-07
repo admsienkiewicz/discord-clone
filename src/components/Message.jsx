@@ -10,7 +10,7 @@ const Message = ({ msgProps }) => {
 
     // to fix scroll to last message on first render
     useEffect(() => {
-        ref.current?.scrollIntoView({ behavior: 'smooth' })
+        ref.current.scrollIntoView({ behavior: 'smooth' })
     }, [msgProps, loading])
 
     return (
