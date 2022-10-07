@@ -18,6 +18,7 @@
     }
     @include mobile-view {
         height: 100vh;
+        position: relative;
         width: 100vw;
         border-radius: 0;
     }
