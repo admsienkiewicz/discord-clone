@@ -17,8 +17,10 @@
         border-radius: 10px;
     }
     @include mobile-view {
-        height: 100vh;
-        height: -webkit-fill-available;
+        height: 100%;
+        height: -moz-available; /* WebKit-based browsers will ignore this. */
+        height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        height: fill-available;
         width: 100vw;
         border-radius: 0;
     }
