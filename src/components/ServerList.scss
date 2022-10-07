@@ -13,7 +13,7 @@
     overflow-x: visible;
 
     @include mobile-view {
-        overflow: scroll;
+        overflow: hidden;
     }
 
     &.hidden {
@@ -53,6 +53,7 @@
 
         @include mobile-view {
             overflow-y: scroll;
+            overflow-x: hidden;
         }
     }
 
