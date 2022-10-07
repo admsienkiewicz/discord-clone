@@ -2,15 +2,14 @@
 @import './assets/_colorVariables.scss';
 
 html {
-    height: calc(100vh - calc(100vh - 100%));
+    height: -webkit-fill-available;
 }
 body {
     display: flex;
     width: 100vw;
-    height: calc(100vh - calc(100vh - 100%));
+    height: -webkit-fill-available;
     justify-content: center;
     align-items: center;
-    border: solid green 1px;
 }
 * {
     box-sizing: border-box;
@@ -42,7 +41,7 @@ body {
 
 .App {
     width: 100vw;
-    height: calc(100vh - calc(100vh - 100%));
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
