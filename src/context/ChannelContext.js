@@ -1,3 +1,4 @@
+// Provides context on currently open channel
 import { createContext, useState } from 'react'
 
 export const ChannelContext = createContext()

@@ -6,7 +6,6 @@ import Register from './pages/Register'
 import CreateServer from './pages/CreateServer'
 import { UserContext } from './context/UserContext'
 import { useContext } from 'react'
-import Div100vh from 'react-div-100vh'
 
 function App() {
     const { currUser } = useContext(UserContext)
@@ -17,7 +16,7 @@ function App() {
         return <Navigate to="/login" />
     }
     return (
-        <Div100vh className="App">
+        <div className="App">
             <BrowserRouter>
                 <Routes>
                     <Route
@@ -33,7 +32,7 @@ function App() {
                     <Route path="/create-server" element={<CreateServer />} />
                 </Routes>
             </BrowserRouter>
-        </Div100vh>
+        </div>
     )
 }
 

@@ -1,3 +1,4 @@
+// Provides context on currently open server
 import { createContext, useState } from 'react'
 
 export const ServerContext = createContext()

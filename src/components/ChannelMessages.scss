@@ -9,12 +9,11 @@
     overflow-x: hidden;
 
     @include mobile-view {
-        width: 100vw;
+        width: 100%;
+        padding: 10px;
     }
     @include tablet-portrait-view {
-        width: 100vw;
-    }
-    @include tablet-landscape-view {
-        flex: 20;
+        width: 100%;
+        padding: 10px;
     }
 }

@@ -6,7 +6,10 @@
     position: relative;
 
     @include tablet-landscape-view {
-        width: 0;
+        min-width: 500px;
+    }
+    @include desktop-view {
+        min-width: 700px;
     }
 
     &.hidden {

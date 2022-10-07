@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ChannelList.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
 import { HiHashtag } from 'react-icons/hi'
-import { BsHandIndex, BsPlus } from 'react-icons/bs'
+import { BsPlus } from 'react-icons/bs'
 import { SidebarContext } from '../context/SidebarContext'
 import { ServerContext } from '../context/ServerContext'
 import { ChannelContext } from '../context/ChannelContext'
-import { collection, doc, documentId, FieldPath, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore'
+import { collection, doc, documentId, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore'
 import { db } from '../firebase'
 import { uuidv4 } from '@firebase/util'
 
@@ -23,6 +23,7 @@ const ChannelList = () => {
         if (!newChannelName) return
         setNewChannelName('')
         const newChannelId = uuidv4()
+        //update serve-channels document for current server
         await updateDoc(doc(db, 'serverChannels', currServer.serverId), {
             [newChannelId]: {
                 channelId: newChannelId,
@@ -31,7 +32,7 @@ const ChannelList = () => {
                 creationDate: new Date(),
             },
         })
-        console.log('added')
+        //add channel document with empty arrays of messages
         await setDoc(doc(db, 'channels', newChannelId), {
             messages: [],
         })
@@ -69,7 +70,7 @@ const ChannelList = () => {
         return () => {
             unsub()
         }
-    }, [currServer.serverId])
+    }, [currServer.serverId, setCurrChannel])
 
     return (
         <div className="ChannelList" onKeyDown={handleEnter}>

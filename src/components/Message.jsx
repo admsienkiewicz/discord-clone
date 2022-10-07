@@ -1,23 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { UserContext } from '../context/UserContext'
+import React, { useEffect, useRef, useState } from 'react'
 import './Message.scss'
 import ReactLoading from 'react-loading'
 
 const Message = ({ msgProps }) => {
-    const { senderImg, senderName, sendDate, senderId, contentText, contentImg } = msgProps
-    const { currUser } = useContext(UserContext)
+    const { senderImg, senderName, sendDate, contentText, contentImg } = msgProps
     const [loading, setLoading] = useState(true)
 
     const ref = useRef()
 
+    // to fix scroll to last message on first render
     useEffect(() => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [])
+    }, [msgProps, loading])
 
     return (
-        <div className={`Message`} ref={ref}>
+        <div ref={ref} className={`Message`}>
             <div className="Message__avatar">
-                <img src={senderImg} className="Message__avatar--img" />
+                <img src={senderImg} className="Message__avatar--img" alt="user avatar" />
             </div>
             <div className="Message__content">
                 <div className="Message__info">
@@ -32,6 +31,7 @@ const Message = ({ msgProps }) => {
                         className="Message__content--img"
                         style={loading ? { display: 'none' } : {}}
                         onLoad={() => setLoading(false)}
+                        alt="contet img"
                     />
                 )}
             </div>

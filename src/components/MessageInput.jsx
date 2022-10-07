@@ -1,5 +1,5 @@
 import { uuidv4 } from '@firebase/util'
-import { arrayUnion, doc, Timestamp, updateDoc } from 'firebase/firestore'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import React, { useContext, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
@@ -18,9 +18,12 @@ const MessageInput = () => {
         setImg(null)
         setText('')
         if (img) {
+            //uplaod img to storage
             const storageRef = ref(storage, uuidv4())
             const upladTask = await uploadBytesResumable(storageRef, img)
+            //get photo url
             const downloadUrl = await getDownloadURL(upladTask.ref)
+            //append to message array for current channel
             await updateDoc(doc(db, 'channels', currChannel.channelId), {
                 messages: arrayUnion({
                     id: uuidv4(),
@@ -33,6 +36,7 @@ const MessageInput = () => {
                 }),
             })
         } else {
+            //append to message array for current channel
             await updateDoc(doc(db, 'channels', currChannel.channelId), {
                 messages: arrayUnion({
                     id: uuidv4(),

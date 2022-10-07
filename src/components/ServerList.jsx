@@ -13,9 +13,10 @@ const ServerList = () => {
     const { openSideBar } = useContext(SidebarContext)
     const [servers, setServers] = useState([])
     const navigate = useNavigate()
-    const { setCurrServer, currServer } = useContext(ServerContext)
+    const { setCurrServer } = useContext(ServerContext)
 
     useEffect(() => {
+        //listener on changes for whole serevers collection
         const q = query(collection(db, 'servers'))
         const unsub = onSnapshot(q, (querySnapshot) => {
             const serversArray = []
@@ -29,7 +30,7 @@ const ServerList = () => {
         return () => {
             unsub()
         }
-    }, [])
+    }, [setCurrServer])
     return (
         <div className={`ServerList ${!openSideBar && 'hidden'}`}>
             <div className="ServerList__appIcon">

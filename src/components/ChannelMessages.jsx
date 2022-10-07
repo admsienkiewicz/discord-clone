@@ -11,6 +11,7 @@ const ChannelMessages = () => {
 
     useEffect(() => {
         const getMessages = () => {
+            //listener to changes on channels document for current channel
             const unsub = onSnapshot(doc(db, 'channels', currChannel.channelId), (doc) => {
                 doc.exists() && setMessages(doc.data().messages)
             })
@@ -18,11 +19,13 @@ const ChannelMessages = () => {
                 unsub()
             }
         }
+        //prevent from running when currChannel is undefined
         currChannel.channelId && getMessages()
     }, [currChannel.channelId])
+
     return (
         <div className="ChannelMessages">
-            {messages?.map((msg, index) => {
+            {messages.map((msg, index) => {
                 return <Message key={index} msgProps={msg} />
             })}
         </div>

@@ -18,6 +18,7 @@ const Server = () => {
 
     useEffect(() => {
         const updateServer = () => {
+            //listener for changes on server document for currServer
             const unsub = onSnapshot(doc(db, 'servers', currServer.serverId), (doc) => {
                 if (doc.exists()) {
                     setCurrServer(doc.data())
@@ -27,8 +28,9 @@ const Server = () => {
                 unsub()
             }
         }
+        //prevents form running with currServer undefined
         currServer.serverId && updateServer()
-    }, [currServer.serverId])
+    }, [currServer.serverId, setCurrServer])
 
     return (
         <div className={`Server ${!openSideBar && 'hidden'} `}>
@@ -55,7 +57,7 @@ const Server = () => {
             </div>
             <div className="Server__details">
                 <div className="wrapper--server">
-                    <img src={currServer.logo} className="Server__details--logo" />
+                    <img src={currServer.logo} className="Server__details--logo" alt="server logo" />
                 </div>
                 <span className="Server__details--description">{currServer.description}</span>
                 <span className="Server__details--admin">
