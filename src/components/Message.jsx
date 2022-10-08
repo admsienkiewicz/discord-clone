@@ -24,13 +24,13 @@ const Message = ({ msgProps }) => {
                     <p className="Message__info--date">{sendDate}</p>
                 </div>
                 <span className="Message__content--text">{contentText}</span>
-                {/* {contentImg && loading && <ReactLoading type={'spin'} />} */}
+                {contentImg && loading && <ReactLoading type={'spin'} />}
                 {contentImg && (
                     <img
                         src={contentImg}
                         className="Message__content--img"
-                        // style={loading ? { display: 'none' } : {}}
-                        // onLoad={() => setLoading(false)}
+                        style={loading ? { display: 'none' } : {}}
+                        onLoad={() => setLoading(false)}
                         alt="contet img"
                     />
                 )}
