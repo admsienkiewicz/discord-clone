@@ -6,6 +6,8 @@ import Register from './pages/Register'
 import CreateServer from './pages/CreateServer'
 import { UserContext } from './context/UserContext'
 import { useContext } from 'react'
+import EditServer from './pages/EditServer'
+import DeleteServer from './pages/DeleteServer'
 
 function App() {
     const { currUser } = useContext(UserContext)
@@ -29,7 +31,30 @@ function App() {
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/create-server" element={<CreateServer />} />
+                    <Route
+                        path="/create-server"
+                        element={
+                            // <RedirectToLogin>
+                            <CreateServer />
+                            // </RedirectToLogin>
+                        }
+                    />
+                    <Route
+                        path="/edit-server"
+                        element={
+                            <RedirectToLogin>
+                                <EditServer />
+                            </RedirectToLogin>
+                        }
+                    />
+                    <Route
+                        path="delete-server"
+                        element={
+                            <RedirectToLogin>
+                                <DeleteServer />
+                            </RedirectToLogin>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

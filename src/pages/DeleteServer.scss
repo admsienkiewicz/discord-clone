@@ -1,0 +1,25 @@
+@import './CreateServer.scss';
+
+.DeleteServer {
+    @extend .CreateServer;
+
+    .formContainer {
+        &__confirmationMessage {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        &__buttons {
+            display: flex;
+            gap: 10px;
+
+            & .cancel {
+                background-color: $light-blue;
+            }
+
+            & .delete {
+                background-color: $light-red;
+            }
+        }
+    }
+}

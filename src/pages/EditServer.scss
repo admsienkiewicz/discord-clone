@@ -1,0 +1,5 @@
+@import './CreateServer.scss';
+
+.EditServer {
+    @extend .CreateServer;
+}

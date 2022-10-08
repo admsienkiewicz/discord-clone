@@ -9,12 +9,15 @@ import { ServerContext } from '../context/ServerContext'
 import { UserContext } from '../context/UserContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import EditServer from '../pages/EditServer'
 
 const Server = () => {
     const [openOptions, setOpenOptions] = useState(false)
     const { openSideBar } = useContext(SidebarContext)
     const { currServer, setCurrServer } = useContext(ServerContext)
     const { currUser } = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const updateServer = () => {
@@ -44,11 +47,23 @@ const Server = () => {
                         <MdKeyboardArrowUp className="Server__closeOptions" onClick={() => setOpenOptions(false)} />
                         <div className={`Server__options ${currUser.uid !== currServer.adminId && 'disable'}`}>
                             <div className="edit">
-                                Edit server
+                                {currUser.uid === currServer.adminId ? (
+                                    <Link to={'/edit-server'} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Edit server
+                                    </Link>
+                                ) : (
+                                    'Edit server'
+                                )}
                                 <span class="tooltiptext">Only server admin can edit</span>
                             </div>
                             <div className="delete">
-                                Delete server
+                                {currUser.uid === currServer.adminId ? (
+                                    <Link to={'/delete-server'} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Delete server
+                                    </Link>
+                                ) : (
+                                    'Delete server'
+                                )}
                                 <span className="tooltiptext">Only server admin can delete</span>
                             </div>
                         </div>

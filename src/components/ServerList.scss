@@ -10,7 +10,7 @@
     align-items: center;
     position: relative;
     width: 80px;
-    z-index: 20;
+    z-index: 10;
 
     @include mobile-view {
         overflow: hidden;
@@ -47,14 +47,17 @@
         }
     }
     & .wrapper-overflow {
-        overflow-y: auto;
+        overflow-y: clip;
         height: calc(100% - 140px);
+        // margin-left: 150px;
     }
 
     &__icons {
         width: 80px;
         overflow-x: visible;
-
+        // margin-right: 150px;
+        // padding: 150px;
+        // padding: 250px;
         // @include mobile-view {
         //     overflow-y: scroll;
         //     overflow-x: hidden;
