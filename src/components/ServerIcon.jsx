@@ -10,7 +10,7 @@ const ServerIcon = ({ serverImg, serverName }) => {
         <div className={`ServerIcon ${currServer.name === serverName && 'selected'}`}>
             {loading && <ReactLoading type={'bubbles'} />}
             <div className="ServerIcon__selection"></div>
-            <div className="wrapper">
+            <div className="wrapper" style={loading ? { display: 'none' } : {}}>
                 <img
                     src={serverImg}
                     className="ServerIcon__img"

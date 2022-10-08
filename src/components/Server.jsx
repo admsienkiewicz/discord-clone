@@ -49,7 +49,7 @@ const Server = () => {
                             </div>
                             <div className="delete">
                                 Delete server
-                                <span class="tooltiptext">Only server admin can delete</span>
+                                <span className="tooltiptext">Only server admin can delete</span>
                             </div>
                         </div>
                     </>

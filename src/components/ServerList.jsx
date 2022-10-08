@@ -36,12 +36,14 @@ const ServerList = () => {
             <div className="ServerList__appIcon">
                 <FaDiscord className="appIcon" color="white" />
             </div>
-            <div className="ServerList__icons">
-                {servers?.map((server) => (
-                    <div onClick={() => setCurrServer(server)} key={server.serverId}>
-                        <ServerIcon serverImg={server.logo} serverName={server.name} />
-                    </div>
-                ))}
+            <div className="wrapper-overflow">
+                <div className="ServerList__icons">
+                    {servers?.map((server) => (
+                        <div onClick={() => setCurrServer(server)} key={server.serverId}>
+                            <ServerIcon serverImg={server.logo} serverName={server.name} />
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className="ServerList__addIcon">
                 <BsPlus className="addIcon" onClick={() => navigate('/create-server')} />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Message from './Message'
 import './ChannelMessages.scss'
 import { ChannelContext } from '../context/ChannelContext'
@@ -8,12 +8,16 @@ import { db } from '../firebase'
 const ChannelMessages = () => {
     const { currChannel } = useContext(ChannelContext)
     const [messages, setMessages] = useState([])
+    const endRef = useRef()
 
     useEffect(() => {
         const getMessages = () => {
             //listener to changes on channels document for current channel
             const unsub = onSnapshot(doc(db, 'channels', currChannel.channelId), (doc) => {
-                doc.exists() && setMessages(doc.data().messages)
+                if (doc.exists()) {
+                    setMessages(doc.data().messages)
+                    console.log('newmessages')
+                }
             })
             return () => {
                 unsub()
@@ -24,11 +28,16 @@ const ChannelMessages = () => {
         currChannel.channelId && getMessages()
     }, [currChannel.channelId])
 
+    useEffect(() => {
+        endRef.current.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
+
     return (
         <div className="ChannelMessages">
             {messages.map((msg, index) => {
                 return <Message key={index} msgProps={msg} />
             })}
+            <div ref={endRef}></div>
         </div>
     )
 }

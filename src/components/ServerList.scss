@@ -9,8 +9,8 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    max-width: 80px;
-    overflow-x: visible;
+    width: 80px;
+    z-index: 20;
 
     @include mobile-view {
         overflow: hidden;
@@ -46,15 +46,19 @@
             }
         }
     }
+    & .wrapper-overflow {
+        overflow-y: auto;
+        height: calc(100% - 140px);
+    }
 
     &__icons {
-        max-height: calc(100% - 140px);
-        max-width: 80px;
+        width: 80px;
+        overflow-x: visible;
 
-        @include mobile-view {
-            overflow-y: scroll;
-            overflow-x: hidden;
-        }
+        // @include mobile-view {
+        //     overflow-y: scroll;
+        //     overflow-x: hidden;
+        // }
     }
 
     &__addIcon {
