@@ -18,7 +18,7 @@ const DeleteServer = () => {
         try {
             await deleteDoc(doc(db, 'servers', currServer.serverId))
             await deleteDoc(doc(db, 'serverChannels', currServer.serverId))
-            const q = query(collection(db, 'chats'), where('serverId', '==', currServer.serverId))
+            const q = query(collection(db, 'channels'), where('serverId', '==', currServer.serverId))
             const docSnap = await getDocs(q)
             docSnap.forEach((doc) => {
                 deleteDoc(doc.ref())
