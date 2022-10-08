@@ -4,6 +4,9 @@
     @extend .Register;
 
     .formContainer {
+        @include mobile-view {
+            padding: 20px;
+        }
         &__selectImage {
             display: flex;
             flex-direction: column;

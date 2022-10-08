@@ -12,31 +12,42 @@ import ReactLoading from 'react-loading'
 const Register = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    const [selectedImage, setSelectedImage] = useState('')
     const navigate = useNavigate()
 
     const registerUser = async (e) => {
-        setLoading(true)
         setError('')
         e.preventDefault()
-        const displayName = e.target[0].value
-        const email = e.target[1].value
-        const password = e.target[2].value
-        const file = e.target[3].files[0]
+        const inputs = {}
+        inputs.displayName = e.target[0].value
+        inputs.email = e.target[1].value
+        inputs.password = e.target[2].value
+        inputs.image = e.target[3].files[0]
 
+        let valid = true
+        for (const [inputName, inputValue] of Object.entries(inputs)) {
+            if (!inputValue) {
+                setError(`Missing input field: ${inputName}`)
+                valid = false
+                break
+            }
+        }
+        if (!valid) return
+        setLoading(true)
         try {
             //create user to authentication table
-            const authenticatedUser = await createUserWithEmailAndPassword(auth, email, password)
+            const authenticatedUser = await createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
             //upload photo
             const storageRef = ref(storage, authenticatedUser.user.uid)
-            const uploadTask = await uploadBytesResumable(storageRef, file)
+            const uploadTask = await uploadBytesResumable(storageRef, inputs.image)
             const photoURL = await getDownloadURL(uploadTask.ref)
             //update user profile with displayName and photoUrl
-            await updateProfile(authenticatedUser.user, { displayName, photoURL })
+            await updateProfile(authenticatedUser.user, { displayName: inputs.displayName, photoURL })
             //create user table in firebase database
             await setDoc(doc(db, 'users', authenticatedUser.user.uid), {
                 uid: authenticatedUser.user.uid,
-                displayName,
-                email,
+                displayName: inputs.displayName,
+                email: inputs.email,
                 photoURL,
             })
             navigate('/')
@@ -55,10 +66,17 @@ const Register = () => {
                     <input type="text" className="formContainer__input" placeholder="Enter username" />
                     <input type="email" className="formContainer__input" placeholder="Enter mail" />
                     <input type="password" className="formContainer__input" placeholder="Enter password" />
-                    <input type="file" id="selectImage" style={{ display: 'none' }} />
+                    <input
+                        type="file"
+                        id="selectImage"
+                        style={{ display: 'none' }}
+                        onChange={(e) => setSelectedImage(e.target.files[0].name)}
+                    />
                     <label htmlFor="selectImage" className="formContainer__selectImage">
                         <MdOutlineImageSearch className="formContainer__selectImage--icon" />
-                        <span className="formContainer__selectImage--text">Select your avatar</span>
+                        <span className="formContainer__selectImage--text">
+                            {(selectedImage && `Selected: ${selectedImage}`) || 'Choose Your avatar'}
+                        </span>
                     </label>
                     <button className="formContainer__submitBtn">Register</button>
                 </form>

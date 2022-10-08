@@ -12,27 +12,38 @@ import { doc, setDoc, updateDoc } from 'firebase/firestore'
 const CreateServer = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [selectedImage, setSelectedImage] = useState('')
     const navigate = useNavigate()
     const { currUser } = useContext(UserContext)
 
     const addServer = async (e) => {
         e.preventDefault()
+        const inputs = {}
+        inputs.image = e.target[0].files[0]
+        inputs.name = e.target[1].value
+        inputs.description = e.target[2].value
+        let valid = true
+        for (const [inputName, inputValue] of Object.entries(inputs)) {
+            if (!inputValue) {
+                setError(`Missing server ${inputName}`)
+                valid = false
+                break
+            }
+        }
+        if (!valid) return
         setLoading(true)
-        const file = e.target[0].files[0]
-        const name = e.target[1].value
-        const description = e.target[2].value
         const serverId = uuidv4()
         const adminId = currUser.uid
         const generalChannelId = uuidv4()
         try {
             //upload img to storage
             const storageRef = ref(storage, `photo_${serverId}`)
-            const uploadTask = await uploadBytesResumable(storageRef, file)
+            const uploadTask = await uploadBytesResumable(storageRef, inputs.image)
             const logo = await getDownloadURL(uploadTask.ref)
             //create server document in firebase database
             await setDoc(doc(db, 'servers', serverId), {
-                name,
-                description,
+                name: inputs.name,
+                description: inputs.description,
                 logo,
                 serverId,
                 adminId,
@@ -64,14 +75,21 @@ const CreateServer = () => {
             <div className="formContainer">
                 <span className="formContainer__title">Create server</span>
                 <form onSubmit={addServer}>
-                    <input type="file" id="selectImage" style={{ display: 'none' }} />
+                    <input
+                        type="file"
+                        id="selectImage"
+                        style={{ display: 'none' }}
+                        onChange={(e) => setSelectedImage(e.target.files[0].name)}
+                    />
                     <label htmlFor="selectImage" className="formContainer__selectImage">
                         {loading ? (
                             <ReactLoading type={'spin'} height="110px" />
                         ) : (
                             <MdOutlineImageSearch className="formContainer__selectImage--icon" />
                         )}
-                        <span className="formContainer__selectImage--text">Choose server logo</span>
+                        <span className="formContainer__selectImage--text">
+                            {(selectedImage && `Selected: ${selectedImage}`) || 'Choose server logo'}
+                        </span>
                     </label>
                     <input type="text" className="formContainer__input serverName" placeholder="Enter server name" />
                     <textarea

@@ -30,7 +30,7 @@ const Server = () => {
         }
         //prevents form running with currServer undefined
         currServer.serverId && updateServer()
-    }, [currServer.serverId, setCurrServer])
+    }, [currServer.serverId])
 
     return (
         <div className={`Server ${!openSideBar && 'hidden'} `}>

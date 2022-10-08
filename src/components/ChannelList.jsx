@@ -70,7 +70,7 @@ const ChannelList = () => {
         return () => {
             unsub()
         }
-    }, [currServer.serverId, setCurrChannel])
+    }, [currServer.serverId])
 
     return (
         <div className="ChannelList" onKeyDown={handleEnter}>

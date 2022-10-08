@@ -30,7 +30,7 @@ const ServerList = () => {
         return () => {
             unsub()
         }
-    }, [setCurrServer])
+    }, [])
     return (
         <div className={`ServerList ${!openSideBar && 'hidden'}`}>
             <div className="ServerList__appIcon">
