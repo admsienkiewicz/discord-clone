@@ -9,15 +9,15 @@ import { ServerContext } from '../context/ServerContext'
 import { UserContext } from '../context/UserContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import EditServer from '../pages/EditServer'
+import ReactLoading from 'react-loading'
+import { Link } from 'react-router-dom'
 
 const Server = () => {
     const [openOptions, setOpenOptions] = useState(false)
     const { openSideBar } = useContext(SidebarContext)
     const { currServer, setCurrServer } = useContext(ServerContext)
     const { currUser } = useContext(UserContext)
-    const navigate = useNavigate()
+    const [imgLoading, setImgLoading] = useState(true)
 
     useEffect(() => {
         const updateServer = () => {
@@ -71,8 +71,15 @@ const Server = () => {
                 )}
             </div>
             <div className="Server__details">
+                {imgLoading && <ReactLoading type={'bubbles'} />}
                 <div className="wrapper--server">
-                    <img src={currServer.logo} className="Server__details--logo" alt="server logo" />
+                    <img
+                        src={currServer.logo}
+                        className="Server__details--logo"
+                        alt="server logo"
+                        style={imgLoading ? { display: 'none' } : {}}
+                        onLoad={() => setImgLoading(false)}
+                    />
                 </div>
                 <span className="Server__details--description">{currServer.description}</span>
                 <span className="Server__details--admin">

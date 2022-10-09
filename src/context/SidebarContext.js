@@ -1,4 +1,4 @@
-//sideBar context provides information for closing openning sidebar
+//provides information for closing/openning sidebar
 import { createContext, useState } from 'react'
 
 export const SidebarContext = createContext()

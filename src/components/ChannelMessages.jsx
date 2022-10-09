@@ -28,6 +28,7 @@ const ChannelMessages = () => {
         currChannel.channelId && getMessages()
     }, [currChannel.channelId])
 
+    //scroll to the end of channel messages on messages array change
     useEffect(() => {
         endRef.current.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
