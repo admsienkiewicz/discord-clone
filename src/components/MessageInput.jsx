@@ -17,6 +17,7 @@ const MessageInput = () => {
     const sendMessage = async () => {
         setImg(null)
         setText('')
+        if (!img && !text) return
         if (img) {
             //uplaod img to storage
             const storageRef = ref(storage, uuidv4())
