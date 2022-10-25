@@ -5,11 +5,11 @@ import { HiHashtag } from 'react-icons/hi'
 import { GoThreeBars } from 'react-icons/go'
 import MessageInput from './MessageInput'
 import { SidebarContext } from '../context/SidebarContext'
-import { ChannelContext } from '../context/ChannelContext'
+import { useSelector } from 'react-redux'
 
 const Channel = () => {
     const { setOpenSideBar, openSideBar } = useContext(SidebarContext)
-    const { currChannel } = useContext(ChannelContext)
+    const { currChannel } = useSelector((state) => state.channel)
 
     return (
         <div className={`Channel ${openSideBar && 'hidden'}`}>

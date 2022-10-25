@@ -5,7 +5,7 @@ import ReactLoading from 'react-loading'
 import './DeleteServer.scss'
 import { ServerContext } from '../context/ServerContext'
 import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../firebase/firebase'
 
 const DeleteServer = () => {
     const [loading, setLoading] = useState(false)

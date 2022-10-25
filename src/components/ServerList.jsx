@@ -4,16 +4,17 @@ import './ServerList.scss'
 import { FaDiscord } from 'react-icons/fa'
 import { BsPlus } from 'react-icons/bs'
 import { SidebarContext } from '../context/SidebarContext'
-import { db } from '../firebase'
+import { db } from '../firebase/firebase'
 import { collection, query, onSnapshot } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
-import { ServerContext } from '../context/ServerContext'
+import { useDispatch } from 'react-redux'
+import { changeServer } from '../redux-toolkit/globalStates/currServerSlice'
 
 const ServerList = () => {
     const { openSideBar } = useContext(SidebarContext)
     const [servers, setServers] = useState([])
     const navigate = useNavigate()
-    const { setCurrServer } = useContext(ServerContext)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         //listener on changes for whole serevers collection
@@ -24,7 +25,8 @@ const ServerList = () => {
                 serversArray.push(doc.data())
             })
             const sorted = serversArray.sort((a, b) => a.creationDate - b.creationDate)
-            setCurrServer(sorted[0])
+            const { creationDate, ...server } = sorted[0]
+            dispatch(changeServer(server))
             setServers(sorted)
         })
         return () => {
@@ -39,7 +41,13 @@ const ServerList = () => {
             <div className="wrapper-overflow">
                 <div className="ServerList__icons">
                     {servers?.map((server) => (
-                        <div onClick={() => setCurrServer(server)} key={server.serverId}>
+                        <div
+                            onClick={() => {
+                                const { creationDate, ...serverDetails } = server
+                                dispatch(changeServer(serverDetails))
+                            }}
+                            key={server.serverId}
+                        >
                             <ServerIcon serverImg={server.logo} serverName={server.name} />
                         </div>
                     ))}

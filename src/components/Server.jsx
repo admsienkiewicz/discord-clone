@@ -5,26 +5,29 @@ import './Server.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
 import { SidebarContext } from '../context/SidebarContext'
-import { ServerContext } from '../context/ServerContext'
-import { UserContext } from '../context/UserContext'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../firebase/firebase'
 import ReactLoading from 'react-loading'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeServer } from '../redux-toolkit/globalStates/currServerSlice'
 
 const Server = () => {
     const [openOptions, setOpenOptions] = useState(false)
     const { openSideBar } = useContext(SidebarContext)
-    const { currServer, setCurrServer } = useContext(ServerContext)
-    const { currUser } = useContext(UserContext)
+    const { currServer } = useSelector((state) => state.server)
+    const { currUser } = useSelector((state) => state.channel)
     const [imgLoading, setImgLoading] = useState(true)
+    const dispatch = useDispatch()
 
+    console.log(currServer)
     useEffect(() => {
         const updateServer = () => {
             //listener for changes on server document for currServer
             const unsub = onSnapshot(doc(db, 'servers', currServer.serverId), (doc) => {
                 if (doc.exists()) {
-                    setCurrServer(doc.data())
+                    const { creationDate, ...server } = doc.data()
+                    dispatch(changeServer(server))
                 }
             })
             return () => {

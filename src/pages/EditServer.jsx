@@ -6,7 +6,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ServerContext } from '../context/ServerContext'
 import { UserContext } from '../context/UserContext'
-import { db, storage } from '../firebase'
+import { db, storage } from '../firebase/firebase'
 import { uuidv4 } from '@firebase/util'
 import './EditServer.scss'
 

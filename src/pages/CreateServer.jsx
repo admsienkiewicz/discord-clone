@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { uuidv4 } from '@firebase/util'
-import { db, storage } from '../firebase'
+import { db, storage } from '../firebase/firebase'
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 
 const CreateServer = () => {

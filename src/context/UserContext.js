@@ -1,6 +1,6 @@
 // Provides context on currentlly logged in user
 import { createContext, useEffect, useState } from 'react'
-import { auth } from '../firebase'
+import { auth } from '../firebase/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
 export const UserContext = createContext()

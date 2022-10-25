@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import './ServerIcon.scss'
 import ReactLoading from 'react-loading'
-import { ServerContext } from '../context/ServerContext'
+import { useSelector } from 'react-redux'
 
 const ServerIcon = ({ serverImg, serverName }) => {
     const [loading, setLoading] = useState(true)
-    const { currServer } = useContext(ServerContext)
+    const { currServer } = useSelector((state) => state.server)
     return (
         <div className={`ServerIcon ${currServer.name === serverName && 'selected'}`}>
             {loading && <ReactLoading type={'bubbles'} />}

@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import { UserContext } from '../context/UserContext'
+import React from 'react'
 import './UserInfo.scss'
 import { signOut } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth } from '../firebase/firebase'
+import { useSelector } from 'react-redux'
 
 const UserInfo = () => {
-    const { currUser } = useContext(UserContext)
+    const { currUser } = useSelector((state) => state.user)
     return (
         <div className="UserInfo">
             <div className="UserInfo__content">

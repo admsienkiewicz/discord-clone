@@ -1,16 +1,16 @@
 import { uuidv4 } from '@firebase/util'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { ChannelContext } from '../context/ChannelContext'
-import { UserContext } from '../context/UserContext'
-import { db, storage } from '../firebase'
+import { useSelector } from 'react-redux'
+import { db, storage } from '../firebase/firebase'
+import SendMessageBtn from './atoms/buttons/SendMessageBtn'
 import './MessageInput.scss'
 
 const MessageInput = () => {
-    const { currUser } = useContext(UserContext)
-    const { currChannel } = useContext(ChannelContext)
+    const { currUser } = useSelector((state) => state.user)
+    const { currChannel } = useSelector((state) => state.channel)
     const [text, setText] = useState('')
     const [img, setImg] = useState(null)
 
@@ -18,37 +18,26 @@ const MessageInput = () => {
         setImg(null)
         setText('')
         if (!img && !text) return
-        if (img) {
-            //uplaod img to storage
-            const storageRef = ref(storage, uuidv4())
-            const upladTask = await uploadBytesResumable(storageRef, img)
-            //get photo url
-            const downloadUrl = await getDownloadURL(upladTask.ref)
-            //append to message array for current channel
-            await updateDoc(doc(db, 'channels', currChannel.channelId), {
-                messages: arrayUnion({
-                    id: uuidv4(),
-                    senderId: currUser.uid,
-                    senderName: currUser.displayName,
-                    senderImg: currUser.photoURL,
-                    sendDate: new Date().toLocaleString('en'),
-                    contentImg: downloadUrl,
-                    contentText: text,
-                }),
-            })
-        } else {
-            //append to message array for current channel
-            await updateDoc(doc(db, 'channels', currChannel.channelId), {
-                messages: arrayUnion({
-                    id: uuidv4(),
-                    senderId: currUser.uid,
-                    senderName: currUser.displayName,
-                    senderImg: currUser.photoURL,
-                    sendDate: new Date().toLocaleString('en'),
-                    contentText: text,
-                }),
-            })
+        //uplaod img to storage
+        const storageRef = img && ref(storage, uuidv4())
+        const upladTask = img && (await uploadBytesResumable(storageRef, img))
+        //get photo url
+        const downloadUrl = img && (await getDownloadURL(upladTask.ref))
+        //create message object
+        const msgObject = {
+            id: uuidv4(),
+            senderId: currUser.uid,
+            senderName: currUser.displayName,
+            senderImg: currUser.photoURL,
+            sendDate: new Date().toLocaleString('en'),
+            contentText: text,
+            ...(img && { contentImg: downloadUrl }),
         }
+        console.log(msgObject)
+        //append to message array for current channel
+        await updateDoc(doc(db, 'channels', currChannel.channelId), {
+            messages: arrayUnion({ ...msgObject }),
+        })
     }
 
     const handleEnter = async (e) => {
@@ -73,9 +62,7 @@ const MessageInput = () => {
                 onChange={(e) => setText(e.target.value)}
                 value={text}
             />
-            <button className="MessageInput__sendBtn" onClick={sendMessage}>
-                Send
-            </button>
+            <SendMessageBtn onClick={sendMessage} />
         </div>
     )
 }

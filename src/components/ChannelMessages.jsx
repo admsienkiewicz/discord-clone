@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import Message from './Message'
 import './ChannelMessages.scss'
-import { ChannelContext } from '../context/ChannelContext'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../firebase/firebase'
+import { useSelector } from 'react-redux'
 
 const ChannelMessages = () => {
-    const { currChannel } = useContext(ChannelContext)
+    const { currChannel } = useSelector((state) => state.channel)
     const [messages, setMessages] = useState([])
     const endRef = useRef()
 

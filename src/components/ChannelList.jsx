@@ -5,19 +5,20 @@ import { MdKeyboardArrowUp } from 'react-icons/md'
 import { HiHashtag } from 'react-icons/hi'
 import { BsPlus } from 'react-icons/bs'
 import { SidebarContext } from '../context/SidebarContext'
-import { ServerContext } from '../context/ServerContext'
-import { ChannelContext } from '../context/ChannelContext'
 import { collection, doc, documentId, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../firebase/firebase'
 import { uuidv4 } from '@firebase/util'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeChannel } from '../redux-toolkit/globalStates/currChannelSlice'
 
 const ChannelList = () => {
     const { setOpenSideBar } = useContext(SidebarContext)
     const [toggleList, setToggleList] = useState(true)
-    const { currServer } = useContext(ServerContext)
-    const { setCurrChannel, currChannel } = useContext(ChannelContext)
+    const { currServer } = useSelector((state) => state.server)
+    const { currChannel } = useSelector((state) => state.channel)
     const [channels, setChannels] = useState([])
     const [newChannelName, setNewChannelName] = useState('')
+    const dispatch = useDispatch()
 
     const addChannel = async () => {
         if (!newChannelName) return
@@ -54,7 +55,7 @@ const ChannelList = () => {
                             .map((ch) => ch[1])
                             .sort((a, b) => a.creationDate - b.creationDate)
                         setChannels(channelArray)
-                        setCurrChannel(channelArray[0])
+                        dispatch(changeChannel(channelArray[0]))
                     }
                     //add new channel to current server
                     if (change.type === 'modified') {
@@ -62,7 +63,7 @@ const ChannelList = () => {
                             .map((ch) => ch[1])
                             .sort((a, b) => a.creationDate - b.creationDate)
                         setChannels(channelArray)
-                        setCurrChannel(channelArray[channelArray.length - 1])
+                        dispatch(changeChannel(channelArray[channelArray.length - 1]))
                     }
                 })
             }
@@ -88,7 +89,7 @@ const ChannelList = () => {
                                 }`}
                                 onClick={() => {
                                     setOpenSideBar(false)
-                                    setCurrChannel(channel)
+                                    dispatch(changeChannel(channel))
                                 }}
                                 key={channel.channelId}
                             >
