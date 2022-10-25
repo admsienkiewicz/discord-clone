@@ -4,8 +4,8 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import React, { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { db, storage } from '../firebase/firebase'
-import SendMessageBtn from './atoms/buttons/SendMessageBtn'
+import { db, storage } from '../../../firebase/firebase'
+import SendMessageBtn from './SendMessageBtn'
 import './MessageInput.scss'
 
 const MessageInput = () => {

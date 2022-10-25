@@ -1,7 +1,7 @@
 import React from 'react'
 import './UserInfo.scss'
 import { signOut } from 'firebase/auth'
-import { auth } from '../firebase/firebase'
+import { auth } from '../../../../firebase/firebase'
 import { useSelector } from 'react-redux'
 
 const UserInfo = () => {

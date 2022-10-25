@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-import ChannelList from './ChannelList'
-import UserInfo from './UserInfo'
+import ChannelList from './ChannelList/ChannelList'
+import UserInfo from './ChannelList/UserInfo/UserInfo'
 import './Server.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
-import { SidebarContext } from '../context/SidebarContext'
+import { SidebarContext } from '../../context/SidebarContext'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase/firebase'
+import { db } from '../../firebase/firebase'
 import ReactLoading from 'react-loading'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeServer } from '../redux-toolkit/globalStates/currServerSlice'
+import { changeServer } from '../../redux-toolkit/globalStates/currServerSlice'
 
 const Server = () => {
     const [openOptions, setOpenOptions] = useState(false)

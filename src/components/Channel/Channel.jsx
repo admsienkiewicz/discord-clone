@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import ChannelMessages from './ChannelMessages'
+import ChannelMessages from './ChannelMessages/ChannelMessages'
 import './Channel.scss'
 import { HiHashtag } from 'react-icons/hi'
 import { GoThreeBars } from 'react-icons/go'
-import MessageInput from './MessageInput'
-import { SidebarContext } from '../context/SidebarContext'
+import MessageInput from './MessageInput/MessageInput'
+import { SidebarContext } from '../../context/SidebarContext'
 import { useSelector } from 'react-redux'
 
 const Channel = () => {

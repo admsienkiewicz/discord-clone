@@ -4,12 +4,12 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import { MdKeyboardArrowUp } from 'react-icons/md'
 import { HiHashtag } from 'react-icons/hi'
 import { BsPlus } from 'react-icons/bs'
-import { SidebarContext } from '../context/SidebarContext'
+import { SidebarContext } from '../../../context/SidebarContext'
 import { collection, doc, documentId, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore'
-import { db } from '../firebase/firebase'
+import { db } from '../../../firebase/firebase'
 import { uuidv4 } from '@firebase/util'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeChannel } from '../redux-toolkit/globalStates/currChannelSlice'
+import { changeChannel } from '../../../redux-toolkit/globalStates/currChannelSlice'
 
 const ChannelList = () => {
     const { setOpenSideBar } = useContext(SidebarContext)

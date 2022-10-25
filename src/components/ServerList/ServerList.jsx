@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
-import ServerIcon from './ServerIcon'
+import ServerIcon from './ServerIcon/ServerIcon'
 import './ServerList.scss'
 import { FaDiscord } from 'react-icons/fa'
 import { BsPlus } from 'react-icons/bs'
-import { SidebarContext } from '../context/SidebarContext'
-import { db } from '../firebase/firebase'
+import { SidebarContext } from '../../context/SidebarContext'
+import { db } from '../../firebase/firebase'
 import { collection, query, onSnapshot } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { changeServer } from '../redux-toolkit/globalStates/currServerSlice'
+import { changeServer } from '../../redux-toolkit/globalStates/currServerSlice'
 
 const ServerList = () => {
     const { openSideBar } = useContext(SidebarContext)

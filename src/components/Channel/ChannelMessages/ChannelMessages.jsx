@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import Message from './Message'
+import Message from '../Message/Message'
 import './ChannelMessages.scss'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase/firebase'
+import { db } from '../../../firebase/firebase'
 import { useSelector } from 'react-redux'
 
 const ChannelMessages = () => {
