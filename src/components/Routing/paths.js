@@ -1,0 +1,6 @@
+export const LOGIN = '/login'
+export const REGISTER = '/register'
+export const CREATE_SERVER = '/create-server'
+export const EDIT_SERVER = '/edit-server'
+export const DELETE_SERVER = 'delete-server'
+export const MAIN = '/'
